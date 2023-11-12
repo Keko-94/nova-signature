@@ -97,6 +97,8 @@ export default {
      */
     setInitialValue() {
       this.value = this.field.value || '';
+      if (this.value)
+        this.$refs.signature.fromDataURL(this.value);
     },
 
     /**
