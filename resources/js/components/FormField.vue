@@ -71,10 +71,12 @@ export default {
   methods: {
     clear() {
         this.$refs.signature.clear()
+        this.value = null
     },
 
     undo() {
         this.$refs.signature.undo()
+        this.save();
     },
 
     onBegin() {
@@ -97,8 +99,6 @@ export default {
      */
     setInitialValue() {
       this.value = this.field.value || '';
-      if (this.value)
-        this.$refs.signature.fromDataURL(this.value);
     },
 
     /**
