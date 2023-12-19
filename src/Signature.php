@@ -23,6 +23,16 @@ class Signature extends Field
         return $this->withMeta(['bgColor' => $color]);
     }
 
+    public function asSvg(): self
+    {
+        return $this->withMeta(['format' => 'image/svg+xml']);
+    }
+
+    public function asJpg(): self
+    {
+        return $this->withMeta(['format' => 'image/jpg']);
+    }
+
     public function height(string $height): self
     {
         return $this->withMeta(['height' => $height]);
