@@ -6,8 +6,8 @@
     :full-width-content="fullWidthContent"
   >
     <template #field>
-  <Vue3Signature :sigOption="{penColor: color, backgroundColor}" :w="width" :h="height"
-                 :disabled="disabled"  ref="signature" class="form-input-bordered rounded" @begin="onBegin" @end="onEnd" />
+      <Vue3Signature :sigOption="{penColor: color, backgroundColor: bgColor}" :w="width" :h="height"
+                     :disabled="disabled"  ref="signature" class="form-input-bordered rounded" @begin="onBegin" @end="onEnd" />
 
   <div class="flex flex-row align-middle md:items-center justify-center md:justify-end space-x-1 space-y-0 md:space-x-3 my-2">
   <button type="button"
@@ -58,7 +58,15 @@ export default {
           color: 'black',
           bgColor: 'white',
           disabled: false,
+          format: 'image/png'
       }
+  },
+  beforeMount() {
+    this.width = this.field.width || this.width;
+    this.height = this.field.height || this.height;
+    this.color = this.field.color || this.color;
+    this.bgColor = this.field.bgColor || this.bgColor;
+    this.format = this.field.format || this.format;
   },
   mounted() {
         this.$nextTick().then(() => {
@@ -90,7 +98,7 @@ export default {
       if (this.$refs.signature.isEmpty()) {
         this.value = null;
       } else {
-        this.value = this.$refs.signature.save();
+        this.value = this.$refs.signature.save(this.format);
       }
     },
    
