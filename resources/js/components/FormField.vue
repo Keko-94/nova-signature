@@ -57,9 +57,7 @@ export default {
     currentlyIsVisible(current, previous) {
       if (current === true && previous === false) {
         this.$nextTick(() => this.handleShow())
-      } else if (current === false && previous === true) {
-        console.log('hide')
-      }
+      } else if (current === false && previous === true) {}
     },
   },
 
